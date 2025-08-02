@@ -1,0 +1,31 @@
+name: Daily GitHub Star Report to Notion
+
+on:
+  schedule:
+    - cron: '0 23 * * *'  # 毎日23時UTC（日本時間8:00）
+  workflow_dispatch:      # 手動実行可能にする
+
+jobs:
+  report:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npx tsc
+
+      - name: Run reporter
+        env:
+          OMSB_GITHUB_TOKEN: ${{ secrets.OMSB_GITHUB_TOKEN }}
+          NOTION_API_KEY: ${{ secrets.NOTION_API_KEY }}
+          NOTION_DATABASE_ID: ${{ secrets.NOTION_DATABASE_ID }}
+        run: node dist/index.js
