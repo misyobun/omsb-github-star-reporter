@@ -1,0 +1,23 @@
+# node modules
+node_modules/
+
+# TypeScript build output
+dist/
+*.tsbuildinfo
+
+# environment variables
+.env
+
+# logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS
+.DS_Store
+
+# vscode settings (optional)
+.vscode/
+
+# prettier cache (if enabled)
+.prettiercache
