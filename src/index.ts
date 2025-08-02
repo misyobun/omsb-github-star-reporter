@@ -7,7 +7,7 @@ dotenv.config()
 
 const notion = new Client({ auth: process.env.NOTION_API_KEY })
 const NOTION_DB_ID = process.env.NOTION_DATABASE_ID!
-const GITHUB_TOKEN = process.env.GITHUB_TOKEN!
+const GITHUB_TOKEN = process.env.OMSB_GITHUB_TOKEN!
 
 interface Repo {
   full_name: string
